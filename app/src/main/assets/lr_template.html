@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @page { size: A4; margin: 0; }
+        body { font-family: Arial, sans-serif; margin: 10mm; color: #000; }
+        .lr-container { width: 100%; font-size: 11px; box-sizing: border-box; border: 1.5px solid black; padding: 5px; }
+        .b { font-weight: bold; }
+        .sm { font-size: 8.5px; line-height: 1.2; }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+
+        /* Header Section */
+        .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px; }
+        .logo-section { width: 80px; text-align: center; }
+        .company-logo { width: 80px; height: 80px; margin: 0 5px 0px 5px; }
+        .center-header { flex: 1; text-align: center; }
+        .jurisdiction { text-decoration: underline; font-size: 10px; margin: 0 5px 0px; display: block; }
+        .company-name { font-size: 34px; font-weight: 900; margin: 0 5px 10px 40px; font-family: 'Arial Black', sans-serif; }
+        .contact-info { width: 220px; text-align: right; font-size: 10px; }
+
+        .regd-address { text-align: center; border-bottom: 1.5px solid black; padding-bottom: 3px; margin-bottom: 0px; font-size: 9px; }
+
+        /* Top Grid Structure */
+        .top-grid { display: grid; grid-template-columns: 1fr 1.2fr 1.1fr; border-bottom: 1.5px solid black; }
+        .grid-box { border-right: 1.5px solid black; border-bottom: 1.5px solid black; padding: 4px; }
+        .no-border-right { border-right: none; }
+        .no-border-bottom { border-bottom: none; }
+
+        .line-input { border-bottom: 1px solid black; flex-grow: 1; min-height: 14px; margin-left: 5px; }
+        .input-row { display: flex; align-items: flex-end; margin-bottom: 4px; padding: 0 4px; }
+        .check-box { display: inline-block; width: 12px; height: 12px; border: 1px solid black; vertical-align: middle; }
+
+        .rounded-box { border: 1.5px solid black; border-radius: 12px; padding: 4px 6px; }
+        .consignment-oval { border: 1.5px solid black; border-radius: 20px; padding: 5px; display: block; width: 85%; margin: 0 auto; }
+
+        .trans-id-box { border: 1.5px solid black; margin-top: 5px; padding: 2px; }
+        .gstin-paid-bar { border: 1.5px solid black; text-align: center; font-weight: bold; margin-top: 4px; padding: 2px; }
+
+        /* Main Table */
+        .main-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        .main-table th, .main-table td { border: 1.5px solid black; padding: 4px; vertical-align: top; box-sizing: border-box; }
+
+        /* Bank Details Box Styling */
+        .bank-details-box {
+            position: absolute;
+            bottom: -1.5px; /* Aligns perfectly with table bottom border */
+            left: 100%;    /* Starts at the end of the Description column */
+            width: 50%;    /* Covers exactly the next 2 columns (Weight section) */
+            border: 1.5px solid black;
+            border-bottom: none;
+            padding: 4px;
+            font-size: 8.5px;
+            line-height: 1.3;
+            background: white; /* Hides the vertical line between Actual/Charged */
+            box-sizing: border-box;
+            margin-left: -0.75px; /* Fixes sub-pixel border alignment */
+            z-index: 10;
+        }
+
+@page { size: A4; margin: 0; }
+        body { font-family: Arial, sans-serif; margin: 10mm; color: #000; }
+        .lr-container { width: 100%; font-size: 11px; box-sizing: border-box; border: 1.5px solid black; padding: 5px; }
+        .b { font-weight: bold; }
+        .sm { font-size: 8.5px; line-height: 1.2; }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+
+        /* Header Section */
+        .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2px; }
+        .logo-section { width: 80px; text-align: center; }
+        .company-logo { width: 80px; height: 80px; margin: 0 5px 0px 5px; }
+        .center-header { flex: 1; text-align: center; }
+        .jurisdiction { text-decoration: underline; font-size: 10px; margin: 0 5px 0px; display: block; }
+        .company-name { font-size: 34px; font-weight: 900; margin: 0 5px 10px 40px; font-family: 'Arial Black', sans-serif;white-space: nowrap; }
+        .contact-info { width: 220px; text-align: right; font-size: 10px; }
+
+        .regd-address { text-align: center; border-bottom: 1.5px solid black; padding-bottom: 3px; margin-bottom: 0px; font-size: 9px; }
+
+        /* Grid Structure */
+        .top-grid { display: grid; grid-template-columns: 1fr 1.2fr 1.1fr; border-bottom: 1.5px solid black; }
+        .grid-box { border-right: 1.5px solid black; border-bottom: 1.5px solid black; padding: 4px; }
+        .no-border-right { border-right: none; }
+        .no-border-bottom { border-bottom: none; }
+
+        .line-input { border-bottom: 1px solid black; flex-grow: 1; min-height: 14px; margin-left: 5px; }
+        .input-row { display: flex; align-items: flex-end; margin-bottom: 4px; padding: 0 4px; }
+
+        /* Main Table - Precise Alignment */
+        .main-table { width: 100%; border-collapse: collapse; table-layout: fixed; border: 1.5px solid black; }
+        .main-table th, .main-table td { border: 1.5px solid black; padding: 0; vertical-align: top; box-sizing: border-box; }
+
+        .cell-padding { padding: 4px; }
+
+        /* Sub-table for Charges to ensure horizontal lines align across Rate and Amount */
+        .charge-grid { width: 100%; border-collapse: collapse; height: 100%; }
+        .charge-grid td { border-bottom: 1.5px solid black; border-right: 1.5px solid black; padding: 4px 6px; height: 22px; }
+        .charge-grid tr:last-child td { border-bottom: none; }
+        .charge-grid td:last-child { border-right: none; }
+
+        /* Bank Details Box Styling */
+        .bank-details-box {
+              position: absolute;
+              bottom: -1px; /* Align with the bottom border of the row */
+              left: 100%;    /* Position it over the Weight columns */
+              width: 50%;    /* Cover both Actual and Charged columns */
+              border: 1.5px solid black; /* Full border for the box */
+              padding: 4px;
+              font-size: 8.5px;
+              line-height: 1.3;
+              background: white; /* Essential to hide the table lines underneath */
+              box-sizing: border-box;
+              margin-left: -0.75px;
+              z-index: 10;
+         }
+        .amount-table { width: 100%; border-collapse: collapse; height: 100%; }
+        .amount-table td { border-bottom: 1px solid black; border-right: 1px solid black; padding: 4px; }
+        .amount-table td:last-child { border-right: none; width: 40px; }
+    </style>
+</head>
+<body>
+
+<div class="lr-container">
+    <div class="header-top">
+        <div class="logo-section">
+            <img src="data:image/jpeg;base64,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" alt="Logo" class="company-logo">
+        </div>
+        <div class="center-header">
+            <span class="jurisdiction">Subject to Vadodara Jurisdiction</span>
+            <h1 class="company-name">Shree Sai Roadways</h1>
+        </div>
+        <div class="contact-info">
+            <b>M. : +91 93769 47595,<br>+91 63548 03520</b>
+        </div>
+    </div>
+
+    <div class="regd-address">
+        <b>Regd. :</b> Laxmi Kripa, 280 Anand Nagar, Karelibaug, Baroda.<br>
+        <b>H.O. :</b> T-60, Earth Eon, Opp. Urmi School, Sama-Savli Road, Vadodara-390008. <b>Email :</b> shreesairoadways07@gmail.com
+    </div>
+
+    <div class="top-grid">
+        <div class="grid-box">
+            <div class="rounded-box text-center" style="margin-bottom: 6px;">
+                <div class="b" style="text-decoration: underline; font-size: 11px;">CAUTION</div>
+                <div class="sm" style="margin-top: 2px;">The Consignment will not be detained, diverted, re-routed or re-booked without Consignee Bank's Written permission will be delivered at the destination.</div>
+            </div>
+            <div class="input-row sm">Address of delivery : <div class="line-input">{{delivery_address}}</div></div>
+            <div class="line-input" style="margin-top: 8px;"></div>
+        </div>
+
+        <div class="grid-box">
+            <div class="text-center b" style="border-bottom: 1px solid black; padding-bottom: 2px; margin-bottom: 4px;">AT OWNER'S RISK INSURANCE</div>
+            <div class="sm">
+                <table style="width:100%; border-collapse:collapse;">
+                    <tr>
+                        <td style="width:18px; vertical-align:top;">
+                        </td>
+                        <td>
+                            <b>The customer has stated that :</b>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="check-box"></div>
+                        </td>
+                        <td>
+                            He has not insured the consignment or
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="check-box"></div>
+                        </td>
+                        <td>
+                            He has insured the consignment
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="sm" style="margin-top:8px; line-height: 1.6;">
+                Company _________________________<br>
+                Policy No. ______________ Date : _____<br>
+                Amount ________________ Risk : _____
+            </div>
+        </div>
+
+        <div class="grid-box no-border-right no-border-bottom" style="grid-column: 3; grid-row: 1 / 4; padding: 0; display: flex; flex-direction: column;">
+            <div class="b" style="border-bottom: 1.5px solid black; padding: 4px;">TRUCK NO. <span style="font-weight: normal;">{{truck}}</span></div>
+            <div style="padding: 6px; border-bottom: 1.5px solid black;">
+                <div class="rounded-box text-center">
+                    <div class="b sm" style="font-size: 11px;">NOTICE</div>
+                    <p class="sm" style="font-size: 8px; margin: 2px 0; text-align: justify;">The Consignment covered by this set of Special Lorry Receipt from shall be stored at the destination under the control of the Transport Operator and shall be delivered to or to the order of the Consignee Bank whose name is mentioned in the Lorry Receipt. It will under no circumstances be delivered to anyone without the written authority from the Consignee bank or its order, endorsed on the Consignee copy or on a separate Letter of Authority.</p>
+                </div>
+            </div>
+            <div style="padding: 6px; flex-grow: 1;">
+                <div class="b text-center" style="font-size: 16px; margin-bottom: 6px; letter-spacing: 1px;">{{copy}}</div>
+                <div style="border: 1.5px solid black; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column;">
+                    <div class="b" style="border-bottom: 1.5px solid black; padding: 4px 8px;">Date : <span style="font-weight: normal;">{{date}}</span></div>
+                    <div class="b" style="border-bottom: 1.5px solid black; padding: 4px 8px;">From : <span style="font-weight: normal;">{{from_city}}</span></div>
+                    <div class="b" style="padding: 4px 8px;">To : <span style="font-weight: normal;">{{to_city}}</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid-box no-border-bottom">
+            <div class="consignment-oval text-center b">CONSIGNMENT NOTE<br>NO. <span style="font-size: 12px; font-weight: normal;">{{con_no}}</span></div>
+        </div>
+
+        <div class="grid-box no-border-bottom text-center">
+            <div class="trans-id-box sm b">TRANS-ID : 24BEXPS7123E1Z5<br>PAN : BEXPS7123E</div>
+            <div class="gstin-paid-bar sm">GSTIN PAID BY : CONSIGNEE / CONSIGNOR</div>
+        </div>
+
+        <div class="grid-box no-border-bottom" style="grid-column: 1 / 3; padding: 8px 4px 4px 4px;">
+            <div class="input-row b">Consignor's Name & Address :
+                <div class="line-input">{{consignor_name}} {{consignor_address}}</div>
+            </div>
+
+            <div class="input-row b">Consignee's Name & Address :
+                <div class="line-input">{{consignee_name}} {{consignee_address}}</div>
+            </div>
+        </div>
+    </div>
+
+    <table class="main-table">
+        <thead>
+        <tr>
+            <th rowspan="2" style="width: 10%">Packages</th>
+            <th rowspan="2" style="width: 40%">DESCRIPTION (Said to Contain)</th>
+            <th colspan="2" style="width: 20%">WEIGHT</th>
+            <th rowspan="2" style="width: 10%">Rate</th>
+            <th rowspan="2" style="width: 20%">Amount to Pay / Paid<br><small>Rs. &nbsp;&nbsp;&nbsp;&nbsp; Ps.</small></th>
+        </tr>
+        <tr>
+            <th style="border-top: 1.5px solid black;">Actual</th>
+            <th style="border-top: 1.5px solid black;">Charged</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td style="height: 280px;" class="text-center cell-padding">{{pkgs}}</td>
+            <td style="position: relative;" class="cell-padding">
+                {{description}}
+                <div class="bank-details-box">
+                    <b style="text-decoration: underline;">Shree Sai Road Ways</b><br>
+                    <b>BANK :</b> HDFC A/C. No. 01472020001144<br>
+                    <b>RTGS & IFSC CODE :</b> HDFC0000147
+                </div>
+                <div style="position: absolute; bottom: 5px; left: 5px; font-size: 8px; font-weight: bold;">
+                    Carrier is not responsible for Leakage & Breakage
+                </div>
+            </td>
+            <td class="text-center cell-padding">{{actual_weight}}</td>
+            <td class="text-center cell-padding">{{charged_weight}}</td>
+
+            <td colspan="2">
+                <table class="charge-grid">
+                    <tr>
+                        <td style="width:40%; height:160px;" class="text-center">{{rate}}</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td class="b">Hamali</td>
+                        <td class="text-right">{{hamali}}</td>
+                    </tr>
+
+                    <tr>
+                        <td class="b">St. Ch.</td>
+                        <td class="text-right">50.00</td>
+                    </tr>
+
+                    <tr>
+                        <td class="b">A.O.C.</td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td class="b">Risk Ch.</td>
+                        <td></td>
+                    </tr>
+
+                    <tr class="b">
+                        <td>TOTAL</td>
+                        <td class="text-right">{{total}}</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div style="padding: 5px;">
+        <div class="input-row">Value Rs. {{val_rs}} &nbsp;&nbsp;&nbsp; Invoice No. {{invoice_no}}</div>
+        <div class="input-row" style="margin-top: 5px;">
+            GSTIN {{gstin}}
+            <div style="flex-grow: 1; text-align: right;"><b>For, Shree Sai Roadways</b></div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
