@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     WebView webView;
 
-    EditText truck, consignor, consignee, pkgs,deliveryAddress, weight, desc, conNo, insCo, rate, hamali,invoiceNo, value, gstin, consignorName, consignorAddress, consigneeName, consigneeAddress, fromCity, toCity;
+    EditText truck, policyNo, policyDate,policyAmount,consignor, consignee, pkgs,deliveryAddress, weight, desc, conNo, insCo, rate, hamali,invoiceNo, value, gstin, consignorName, consignorAddress, consigneeName, consigneeAddress, fromCity, toCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         hamali = findViewById(R.id.et_hamali);
         value = findViewById(R.id.et_value);
         gstin = findViewById(R.id.et_gstin);
+        policyNo = findViewById(R.id.et_policy_no);
+        policyDate = findViewById(R.id.et_policy_date);
+        policyAmount = findViewById(R.id.et_policy_amount);
 
         webView = findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
@@ -67,6 +70,10 @@ public class MainActivity extends AppCompatActivity {
         double hamaliVal = Double.parseDouble("0" + hamali.getText().toString());
         double totalVal = rateVal + hamaliVal + 50.00; // Adding the fixed 50.00 St. Ch. from image
 
+        html = html.replace("{{policy_no}}", policyNo.getText().toString());
+        html = html.replace("{{policy_date}}", policyDate.getText().toString());
+        html = html.replace("{{policy_amount}}", policyAmount.getText().toString());
+        html = html.replace("{{risk}}", "Owner's Risk");
         html = html.replace("{{delivery_address}}", sDeliveryAddr);
         html = html.replace("{{con_no}}", conNo.getText().toString());
         html = html.replace("{{ins_co}}", insCo.getText().toString());
