@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintManager;
-import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     WebView webView;
 
-    EditText truck, policyNo, policyDate,policyAmount,consignor, consignee, pkgs,deliveryAddress, weight, desc, conNo, insCo, rate, hamali,invoiceNo, value, gstin, consignorName, consignorAddress, consigneeName, consigneeAddress, fromCity, toCity;
+    EditText truck, policyNo, policyDate, policyAmount, consignor, consignee, pkgs, deliveryAddress, weight, desc, conNo, insCo, rate, hamali, invoiceNo, value, gstin, consignorName, consignorAddress, consigneeName, consigneeAddress, fromCity, toCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
 
         webView = findViewById(R.id.webView);
         webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setLoadWithOverviewMode(true);
+        webView.getSettings().setUseWideViewPort(true);
+        webView.getSettings().setBuiltInZoomControls(false);
+        webView.getSettings().setDisplayZoomControls(false);
 
         Button btn = findViewById(R.id.btn_generate);
 
@@ -66,8 +70,18 @@ public class MainActivity extends AppCompatActivity {
 
         String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
         String sDeliveryAddr = deliveryAddress.getText().toString();
-        double rateVal = Double.parseDouble("0" + rate.getText().toString());
-        double hamaliVal = Double.parseDouble("0" + hamali.getText().toString());
+        double rateVal = 0;
+        double hamaliVal = 0;
+
+        try {
+            rateVal = Double.parseDouble(rate.getText().toString());
+        } catch (Exception ignored) {
+        }
+
+        try {
+            hamaliVal = Double.parseDouble(hamali.getText().toString());
+        } catch (Exception ignored) {
+        }
         double totalVal = rateVal + hamaliVal + 50.00; // Adding the fixed 50.00 St. Ch. from image
 
         html = html.replace("{{policy_no}}", policyNo.getText().toString());
@@ -116,14 +130,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         webView.loadDataWithBaseURL(
-                null,
+                "file:///android_asset/",
                 finalHTML,
                 "text/html",
                 "UTF-8",
                 null
         );
 
-        webView.postDelayed(this::createPDF, 1000);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                createPDF();
+            }
+        });
     }
 
     private String loadHTML() {
@@ -153,14 +172,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void createPDF() {
 
+        String fileName = "LR_" + conNo.getText().toString();
+
         PrintManager printManager = (PrintManager) getSystemService(Context.PRINT_SERVICE);
 
-        PrintDocumentAdapter adapter = webView.createPrintDocumentAdapter("LR_Document");
+        PrintDocumentAdapter adapter = webView.createPrintDocumentAdapter(fileName);
+
+        PrintAttributes attributes = new PrintAttributes.Builder()
+                .setMediaSize(PrintAttributes.MediaSize.ISO_A4)
+                .setResolution(new PrintAttributes.Resolution("pdf", "pdf", 600, 600))
+                .setMinMargins(PrintAttributes.Margins.NO_MARGINS)
+                .build();
 
         printManager.print(
                 "LR_Print",
                 adapter,
-                new PrintAttributes.Builder().build()
+                attributes
         );
     }
 }
