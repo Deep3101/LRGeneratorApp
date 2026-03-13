@@ -362,76 +362,102 @@
                             android:layout_height="wrap_content"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <!-- Row 1 : Packages + Actual Weight -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:weightSum="2"
-                        android:layout_marginBottom="16dp">
+                        android:layout_marginBottom="12dp">
 
+                        <!-- Packages -->
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="Packages"
-                            android:textColorHint="#64748B"
-                            app:hintTextColor="#3B82F6"
                             app:boxBackgroundColor="#0F172A"
                             android:layout_marginEnd="8dp"
                             app:boxCornerRadiusTopStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
                             app:boxCornerRadiusBottomStart="12dp"
                             app:boxCornerRadiusBottomEnd="12dp">
+
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/et_pkgs"
-                                android:textColor="#FFFFFF"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textColor="#FFFFFF"
                                 android:inputType="number"/>
+
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <!-- Actual Weight -->
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:hint="Weight (Kg)"
-                            android:textColorHint="#64748B"
-                            app:hintTextColor="#3B82F6"
+                            android:hint="Actual Weight"
                             app:boxBackgroundColor="#0F172A"
                             app:boxCornerRadiusTopStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
                             app:boxCornerRadiusBottomStart="12dp"
                             app:boxCornerRadiusBottomEnd="12dp">
+
                             <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/et_weight"
-                                android:textColor="#FFFFFF"
+                                android:id="@+id/et_actual_weight"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:textColor="#FFFFFF"
                                 android:inputType="numberDecimal"/>
+
                         </com.google.android.material.textfield.TextInputLayout>
+
                     </LinearLayout>
 
+
+                    <!-- Row 2 : Charged Weight -->
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Insurance Company"
-                        android:textColorHint="#64748B"
-                        app:hintTextColor="#3B82F6"
+                        android:hint="Charged Weight"
                         app:boxBackgroundColor="#0F172A"
                         android:layout_marginBottom="16dp"
                         app:boxCornerRadiusTopStart="12dp"
                         app:boxCornerRadiusTopEnd="12dp"
                         app:boxCornerRadiusBottomStart="12dp"
                         app:boxCornerRadiusBottomEnd="12dp">
+
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_ins_co"
-                            android:textColor="#FFFFFF"
+                            android:id="@+id/et_charged_weight"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
+                            android:layout_height="wrap_content"
+                            android:textColor="#FFFFFF"
+                            android:inputType="numberDecimal"/>
+
                     </com.google.android.material.textfield.TextInputLayout>
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:hint="Insurance Company"-->
+<!--                        android:textColorHint="#64748B"-->
+<!--                        app:hintTextColor="#3B82F6"-->
+<!--                        app:boxBackgroundColor="#0F172A"-->
+<!--                        android:layout_marginBottom="16dp"-->
+<!--                        app:boxCornerRadiusTopStart="12dp"-->
+<!--                        app:boxCornerRadiusTopEnd="12dp"-->
+<!--                        app:boxCornerRadiusBottomStart="12dp"-->
+<!--                        app:boxCornerRadiusBottomEnd="12dp">-->
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/et_ins_co"-->
+<!--                            android:textColor="#FFFFFF"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"/>-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -631,6 +657,13 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+
+            <Button
+                android:id="@+id/btn_history"
+                android:text="View LR History"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_generate"
                 android:layout_width="match_parent"
@@ -645,12 +678,14 @@
                 app:elevation="8dp"
                 android:layout_marginBottom="40dp" />
 
+
             <WebView
                 android:id="@+id/webView"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:visibility="gone"
-                android:background="#1E293B"/>
+                android:background="#1E293B"
+                tools:ignore="WebViewLayout" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

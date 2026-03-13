@@ -1,6 +1,7 @@
 package com.example.lrgeneratorapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
@@ -21,12 +22,16 @@ public class MainActivity extends AppCompatActivity {
 
     WebView webView;
 
-    EditText truck, policyNo, policyDate, policyAmount, consignor, consignee, pkgs, deliveryAddress, weight, desc, conNo, insCo, rate, hamali, invoiceNo, value, gstin, consignorName, consignorAddress, consigneeName, consigneeAddress, fromCity, toCity;
+    DatabaseHelper dbHelper;
+
+    EditText truck, policyNo, policyDate, policyAmount, consignor, consignee, pkgs,weight, deliveryAddress, actualWeight, chargedWeight, desc, conNo, insCo, rate, hamali, invoiceNo, value, gstin, consignorName, consignorAddress, consigneeName, consigneeAddress, fromCity, toCity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        dbHelper = new DatabaseHelper(this);
 
         truck = findViewById(R.id.et_truck_no);
 //        consignor = findViewById(R.id.et_consignor);
@@ -40,10 +45,12 @@ public class MainActivity extends AppCompatActivity {
         fromCity = findViewById(R.id.et_from);
         toCity = findViewById(R.id.et_to);
         pkgs = findViewById(R.id.et_pkgs);
-        weight = findViewById(R.id.et_weight);
+//        weight = findViewById(R.id.et_weight);
+        actualWeight = findViewById(R.id.et_actual_weight);
+        chargedWeight = findViewById(R.id.et_charged_weight);
         desc = findViewById(R.id.et_description);
         conNo = findViewById(R.id.et_con_no);
-        insCo = findViewById(R.id.et_ins_co);
+//        insCo = findViewById(R.id.et_ins_co);
         rate = findViewById(R.id.et_rate);
         hamali = findViewById(R.id.et_hamali);
         value = findViewById(R.id.et_value);
@@ -62,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
         Button btn = findViewById(R.id.btn_generate);
 
         btn.setOnClickListener(v -> generateLR());
+
+        Button historyBtn = findViewById(R.id.btn_history);
+
+        historyBtn.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, HistoryActivity.class));
+        });
     }
 
     private void generateLR() {
@@ -90,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         html = html.replace("{{risk}}", "Owner's Risk");
         html = html.replace("{{delivery_address}}", sDeliveryAddr);
         html = html.replace("{{con_no}}", conNo.getText().toString());
-        html = html.replace("{{ins_co}}", insCo.getText().toString());
+//        html = html.replace("{{ins_co}}", insCo.getText().toString());
         html = html.replace("{{rate}}", String.format("%.2f", rateVal));
         html = html.replace("{{hamali}}", String.format("%.2f", hamaliVal));
         html = html.replace("{{total}}", String.format("%.2f", totalVal));
@@ -107,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
         html = html.replace("{{from_city}}", fromCity.getText().toString());
         html = html.replace("{{to_city}}", toCity.getText().toString());
         html = html.replace("{{pkgs}}", pkgs.getText().toString());
-        html = html.replace("{{actual_weight}}", weight.getText().toString());
-        html = html.replace("{{charged_weight}}", weight.getText().toString());
+        html = html.replace("{{actual_weight}}", actualWeight.getText().toString());
+        html = html.replace("{{charged_weight}}", chargedWeight.getText().toString());
         html = html.replace("{{description}}", desc.getText().toString());
         html = html.replace("{{date}}", date);
 
@@ -188,6 +201,22 @@ public class MainActivity extends AppCompatActivity {
                 "LR_Print",
                 adapter,
                 attributes
+        );
+
+        // ✅ SAVE LR HISTORY IN DATABASE
+
+        String pdfPath = "Downloads/LRGenerator/LR_" + conNo.getText().toString() + ".pdf";
+
+        dbHelper.insertLRHistory(
+                conNo.getText().toString(),
+                new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date()),
+                consignorName.getText().toString(),
+                consigneeName.getText().toString(),
+                fromCity.getText().toString(),
+                toCity.getText().toString(),
+                truck.getText().toString(),
+                invoiceNo.getText().toString(),
+                pdfPath
         );
     }
 }
