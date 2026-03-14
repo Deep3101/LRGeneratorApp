@@ -16,26 +16,43 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="24dp"
-        android:paddingTop="32dp"
-        android:paddingBottom="16dp">
+        android:paddingTop="36dp"
+        android:paddingBottom="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SSR Logistics"
-            android:textColor="#3B82F6"
-            android:textSize="14sp"
-            android:fontFamily="sans-serif-medium"
-            android:letterSpacing="0.1" />
+            android:text="SHREE SAI ROADWAYS"
+            android:textColor="#60A5FA"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.15"
+            android:fontFamily="sans-serif-medium"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Lorry Receipt"
             android:textColor="#FFFFFF"
-            android:textSize="32sp"
+            android:textSize="34sp"
             android:textStyle="bold"
-            android:letterSpacing="-0.03" />
+            android:layout_marginTop="4dp"
+            android:letterSpacing="-0.02"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Generate and manage transport receipts"
+            android:textColor="#94A3B8"
+            android:textSize="13sp"
+            android:layout_marginTop="4dp"/>
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="12dp"
+            android:background="#3B82F6"/>
+
     </LinearLayout>
 </com.google.android.material.appbar.AppBarLayout>
 
@@ -49,6 +66,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="20dp"
+            android:paddingBottom="80dp"
             android:clipToPadding="false">
 
             <TextView
@@ -144,6 +162,8 @@
                             app:hintTextColor="#3B82F6"
                             app:boxBackgroundColor="#0F172A"
                             android:layout_marginEnd="8dp"
+                            app:startIconDrawable="@android:drawable/ic_menu_mylocation"
+                            app:startIconTint="#64748B"
                             app:boxCornerRadiusBottomEnd="12dp"
                             app:boxCornerRadiusBottomStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
@@ -164,6 +184,8 @@
                             android:textColorHint="#64748B"
                             app:hintTextColor="#3B82F6"
                             app:boxBackgroundColor="#0F172A"
+                            app:startIconDrawable="@android:drawable/ic_menu_directions"
+                            app:startIconTint="#64748B"
                             app:boxCornerRadiusBottomEnd="12dp"
                             app:boxCornerRadiusBottomStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
@@ -180,10 +202,12 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Full Delivery Address"
+                        android:hint="Address Of Delivery"
                         android:textColorHint="#64748B"
                         app:hintTextColor="#3B82F6"
                         app:boxBackgroundColor="#0F172A"
+                        app:startIconDrawable="@android:drawable/ic_menu_mapmode"
+                        app:startIconTint="#64748B"
                         android:layout_marginTop="16dp"
                         app:boxCornerRadiusBottomEnd="12dp"
                         app:boxCornerRadiusBottomStart="12dp"
@@ -234,6 +258,8 @@
                         android:layout_height="wrap_content"
                         android:hint="Consignor (Sender) Name"
                         android:textColorHint="#64748B"
+                        app:startIconDrawable="@android:drawable/ic_menu_myplaces"
+                        app:startIconTint="#64748B"
                         app:hintTextColor="#3B82F6"
                         app:boxBackgroundColor="#0F172A"
                         android:layout_marginBottom="12dp"
@@ -255,6 +281,8 @@
                         android:hint="Consignor Address"
                         android:textColorHint="#64748B"
                         app:hintTextColor="#3B82F6"
+                        app:startIconDrawable="@android:drawable/ic_dialog_map"
+                        app:startIconTint="#64748B"
                         app:boxBackgroundColor="#0F172A"
                         android:layout_marginBottom="20dp"
                         app:boxCornerRadiusTopStart="12dp"
@@ -281,6 +309,8 @@
                         android:hint="Consignee (Receiver) Name"
                         android:textColorHint="#64748B"
                         app:hintTextColor="#3B82F6"
+                        app:startIconDrawable="@android:drawable/ic_menu_myplaces"
+                        app:startIconTint="#64748B"
                         app:boxBackgroundColor="#0F172A"
                         android:layout_marginBottom="12dp"
                         app:boxCornerRadiusTopStart="12dp"
@@ -301,6 +331,8 @@
                         android:hint="Consignee Address"
                         android:textColorHint="#64748B"
                         app:hintTextColor="#3B82F6"
+                        app:startIconDrawable="@android:drawable/ic_dialog_map"
+                        app:startIconTint="#64748B"
                         app:boxBackgroundColor="#0F172A"
                         app:boxCornerRadiusTopStart="12dp"
                         app:boxCornerRadiusTopEnd="12dp"
@@ -350,6 +382,8 @@
                         android:textColorHint="#64748B"
                         app:hintTextColor="#3B82F6"
                         app:boxBackgroundColor="#0F172A"
+                        app:startIconDrawable="@android:drawable/ic_menu_agenda"
+                        app:startIconTint="#64748B"
                         android:layout_marginBottom="16dp"
                         app:boxCornerRadiusTopStart="12dp"
                         app:boxCornerRadiusTopEnd="12dp"
@@ -363,6 +397,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <!-- Row 1 : Packages + Actual Weight -->
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -370,13 +405,18 @@
                         android:layout_marginBottom="12dp">
 
                         <!-- Packages -->
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="Packages"
+                            android:textColorHint="#64748B"
+                            app:hintTextColor="#3B82F6"
                             app:boxBackgroundColor="#0F172A"
+                            app:startIconDrawable="@android:drawable/ic_menu_sort_by_size"
+                            app:startIconTint="#64748B"
                             android:layout_marginEnd="8dp"
                             app:boxCornerRadiusTopStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
@@ -388,17 +428,23 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColor="#FFFFFF"
-                                android:inputType="number"/>
+                                android:inputType="text"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
 
+
                         <!-- Actual Weight -->
+
                         <com.google.android.material.textfield.TextInputLayout
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:hint="Actual Weight"
+                            android:textColorHint="#64748B"
+                            app:hintTextColor="#3B82F6"
+                            app:startIconDrawable="@android:drawable/ic_menu_upload"
+                            app:startIconTint="#64748B"
                             app:boxBackgroundColor="#0F172A"
                             app:boxCornerRadiusTopStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
@@ -410,20 +456,25 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:textColor="#FFFFFF"
-                                android:inputType="numberDecimal"/>
+                                android:inputType="text"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
 
 
-                    <!-- Row 2 : Charged Weight -->
+                    <!-- Charged Weight -->
+
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Charged Weight"
+                        android:textColorHint="#64748B"
+                        app:hintTextColor="#3B82F6"
                         app:boxBackgroundColor="#0F172A"
+                        app:startIconDrawable="@android:drawable/ic_menu_upload"
+                        app:startIconTint="#64748B"
                         android:layout_marginBottom="16dp"
                         app:boxCornerRadiusTopStart="12dp"
                         app:boxCornerRadiusTopEnd="12dp"
@@ -435,10 +486,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="#FFFFFF"
-                            android:inputType="numberDecimal"/>
+                            android:inputType="text"/>
 
                     </com.google.android.material.textfield.TextInputLayout>
-
 <!--                    <com.google.android.material.textfield.TextInputLayout-->
 <!--                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
 <!--                        android:layout_width="match_parent"-->
@@ -466,6 +516,8 @@
                         android:hint="GSTIN Number"
                         android:textColorHint="#64748B"
                         app:hintTextColor="#3B82F6"
+                        app:startIconDrawable="@android:drawable/ic_menu_info_details"
+                        app:startIconTint="#64748B"
                         app:boxBackgroundColor="#0F172A"
                         app:boxCornerRadiusTopStart="12dp"
                         app:boxCornerRadiusTopEnd="12dp"
@@ -502,78 +554,132 @@
                 app:strokeWidth="1dp"
                 android:layout_marginBottom="32dp">
 
-                <LinearLayout
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Company -->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:hint="Company"
+                    android:textColorHint="#64748B"
+                    app:hintTextColor="#3B82F6"
+                    app:startIconDrawable="@android:drawable/ic_menu_manage"
+                    app:startIconTint="#64748B"
+                    app:boxBackgroundColor="#0F172A"
+                    android:layout_marginBottom="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_company"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Policy Number"
-                        app:hintTextColor="#3B82F6"
-                        app:boxBackgroundColor="#0F172A"
-                        android:layout_marginBottom="12dp"
-                        app:boxCornerRadiusTopStart="12dp"
-                        app:boxCornerRadiusTopEnd="12dp"
-                        app:boxCornerRadiusBottomStart="12dp"
-                        app:boxCornerRadiusBottomEnd="12dp">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_policy_no"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FFFFFF"/>
-                    </com.google.android.material.textfield.TextInputLayout>
+                        android:textColor="#FFFFFF"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <!-- Policy Number -->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Policy Number"
+                    android:textColorHint="#64748B"
+                    app:hintTextColor="#3B82F6"
+                    app:startIconDrawable="@android:drawable/ic_menu_edit"
+                    app:startIconTint="#64748B"
+                    app:boxBackgroundColor="#0F172A"
+                    android:layout_marginBottom="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_policy_no"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <!-- Policy Date -->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Policy Date"
+                    android:textColorHint="#64748B"
+                    app:hintTextColor="#3B82F6"
+                    app:boxBackgroundColor="#0F172A"
+                    app:startIconDrawable="@android:drawable/ic_menu_today"
+                    app:startIconTint="#64748B"
+                    android:layout_marginBottom="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_policy_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:inputType="date"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <!-- Policy Amount -->
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Policy Amount"
+                    android:textColorHint="#64748B"
+                    app:hintTextColor="#3B82F6"
+                    app:startIconDrawable="@android:drawable/ic_menu_info_details"
+                    app:startIconTint="#64748B"
+                    app:boxBackgroundColor="#0F172A"
+                    android:layout_marginBottom="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_policy_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#FFFFFF"
+                        android:inputType="numberDecimal"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+<!--            </LinearLayout>-->
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Policy Date"
-                        app:hintTextColor="#3B82F6"
-                        app:boxBackgroundColor="#0F172A"
-                        android:layout_marginBottom="12dp"
-                        app:boxCornerRadiusTopStart="12dp"
-                        app:boxCornerRadiusTopEnd="12dp"
-                        app:boxCornerRadiusBottomStart="12dp"
-                        app:boxCornerRadiusBottomEnd="12dp">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_policy_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FFFFFF"
-                            android:inputType="date"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Policy Amount"
-                        app:hintTextColor="#3B82F6"
-                        app:boxBackgroundColor="#0F172A"
-                        android:layout_marginBottom="12dp"
-                        app:boxCornerRadiusTopStart="12dp"
-                        app:boxCornerRadiusTopEnd="12dp"
-                        app:boxCornerRadiusBottomStart="12dp"
-                        app:boxCornerRadiusBottomEnd="12dp">
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/et_policy_amount"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="#FFFFFF"
-                            android:inputType="numberDecimal"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Freight Rate"
+                        android:hint="Rate"
                         app:prefixText="₹ "
                         app:prefixTextColor="#3B82F6"
+                        app:startIconDrawable="@android:drawable/ic_menu_info_details"
+                        app:startIconTint="#64748B"
                         android:textColorHint="#64748B"
                         app:hintTextColor="#3B82F6"
                         app:boxBackgroundColor="#0F172A"
@@ -590,6 +696,32 @@
                             android:inputType="numberDecimal"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Amount To Pay / Paid"
+                    app:prefixText="₹ "
+                    app:prefixTextColor="#3B82F6"
+                    app:startIconDrawable="@android:drawable/ic_menu_send"
+                    app:startIconTint="#64748B"
+                    android:textColorHint="#64748B"
+                    app:hintTextColor="#3B82F6"
+                    app:boxBackgroundColor="#0F172A"
+                    android:layout_marginBottom="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusBottomEnd="12dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_amount_to_pay"
+                        android:textColor="#FFFFFF"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
@@ -599,6 +731,8 @@
                         app:prefixTextColor="#3B82F6"
                         android:textColorHint="#64748B"
                         app:hintTextColor="#3B82F6"
+                        app:startIconDrawable="@android:drawable/ic_menu_info_details"
+                        app:startIconTint="#64748B"
                         app:boxBackgroundColor="#0F172A"
                         android:layout_marginBottom="12dp"
                         app:boxCornerRadiusTopStart="12dp"
@@ -622,6 +756,8 @@
                         app:prefixTextColor="#3B82F6"
                         android:textColorHint="#64748B"
                         app:hintTextColor="#3B82F6"
+                        app:startIconDrawable="@android:drawable/ic_menu_info_details"
+                        app:startIconTint="#64748B"
                         app:boxBackgroundColor="#0F172A"
                         android:layout_marginBottom="12dp"
                         app:boxCornerRadiusTopStart="12dp"
@@ -643,6 +779,8 @@
                         android:hint="Invoice Number Reference"
                         android:textColorHint="#64748B"
                         app:hintTextColor="#3B82F6"
+                        app:startIconDrawable="@android:drawable/ic_menu_agenda"
+                        app:startIconTint="#64748B"
                         app:boxBackgroundColor="#0F172A"
                         app:boxCornerRadiusTopStart="12dp"
                         app:boxCornerRadiusTopEnd="12dp"
@@ -658,17 +796,26 @@
             </com.google.android.material.card.MaterialCardView>
 
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_history"
-                android:text="View LR History"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="64dp"
+                android:text="View LR History"
+                android:textSize="18sp"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="#3B82F6"
+                app:cornerRadius="16dp"
+                app:strokeColor="#3B82F6"
+                app:strokeWidth="2dp"
+                app:backgroundTint="@android:color/transparent"
+                android:layout_marginBottom="12dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_generate"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                android:text="Generate Professional PDF"
+                android:text="Generate PDF"
                 android:textSize="18sp"
                 android:textAllCaps="false"
                 android:textStyle="bold"
@@ -676,8 +823,7 @@
                 app:backgroundTint="#2563EB"
                 app:rippleColor="#60A5FA"
                 app:elevation="8dp"
-                android:layout_marginBottom="40dp" />
-
+                android:layout_marginBottom="40dp"/>
 
             <WebView
                 android:id="@+id/webView"

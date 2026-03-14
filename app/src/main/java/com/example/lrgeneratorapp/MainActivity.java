@@ -1,5 +1,6 @@
 package com.example.lrgeneratorapp;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -24,8 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper dbHelper;
 
-    EditText truck, policyNo, policyDate, policyAmount, consignor, consignee, pkgs,weight, deliveryAddress, actualWeight, chargedWeight, desc, conNo, insCo, rate, hamali, invoiceNo, value, gstin, consignorName, consignorAddress, consigneeName, consigneeAddress, fromCity, toCity;
+    EditText truck,company,amountToPay, policyNo, policyDate, policyAmount, consignor, consignee, pkgs,weight, deliveryAddress, actualWeight, chargedWeight, desc, conNo, insCo, rate, hamali, invoiceNo, value, gstin, consignorName, consignorAddress, consigneeName, consigneeAddress, fromCity, toCity;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         truck = findViewById(R.id.et_truck_no);
 //        consignor = findViewById(R.id.et_consignor);
+        company = findViewById(R.id.et_company);
         consignorName = findViewById(R.id.et_consignor_name);
         consignorAddress = findViewById(R.id.et_consignor_address);
         consigneeName = findViewById(R.id.et_consignee_name);
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         conNo = findViewById(R.id.et_con_no);
 //        insCo = findViewById(R.id.et_ins_co);
         rate = findViewById(R.id.et_rate);
+        amountToPay = findViewById(R.id.et_amount_to_pay);
         hamali = findViewById(R.id.et_hamali);
         value = findViewById(R.id.et_value);
         gstin = findViewById(R.id.et_gstin);
@@ -83,19 +87,18 @@ public class MainActivity extends AppCompatActivity {
 
         String date = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
         String sDeliveryAddr = deliveryAddress.getText().toString();
-        double rateVal = 0;
+        double amountVal = 0;
         double hamaliVal = 0;
 
         try {
-            rateVal = Double.parseDouble(rate.getText().toString());
-        } catch (Exception ignored) {
-        }
+            amountVal = Double.parseDouble(amountToPay.getText().toString());
+        } catch (Exception ignored) {}
 
         try {
             hamaliVal = Double.parseDouble(hamali.getText().toString());
-        } catch (Exception ignored) {
-        }
-        double totalVal = rateVal + hamaliVal + 50.00; // Adding the fixed 50.00 St. Ch. from image
+        } catch (Exception ignored) {}
+
+        double totalVal = amountVal + hamaliVal;
 
         html = html.replace("{{policy_no}}", policyNo.getText().toString());
         html = html.replace("{{policy_date}}", policyDate.getText().toString());
@@ -103,8 +106,10 @@ public class MainActivity extends AppCompatActivity {
         html = html.replace("{{risk}}", "Owner's Risk");
         html = html.replace("{{delivery_address}}", sDeliveryAddr);
         html = html.replace("{{con_no}}", conNo.getText().toString());
+        html = html.replace("{{company}}", company.getText().toString());
 //        html = html.replace("{{ins_co}}", insCo.getText().toString());
-        html = html.replace("{{rate}}", String.format("%.2f", rateVal));
+        html = html.replace("{{rate}}", rate.getText().toString());
+        html = html.replace("{{amountToPay}}", amountToPay.getText().toString());
         html = html.replace("{{hamali}}", String.format("%.2f", hamaliVal));
         html = html.replace("{{total}}", String.format("%.2f", totalVal));
         html = html.replace("{{val_rs}}", value.getText().toString());
